@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.fa-hacker-news {
+  background-color: #fff;
+  color: coral;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a:link { text-decoration: none; color:var(--color); font-family: var(--font-family) }
+
+a:visited { text-decoration: none;color:var(--color); font-family: var(--font-family)  }
+
+a:hover { text-decoration: none; }
+
+a:active { text-decoration: none; color:var(--color); font-family: var(--font-family)  }
+.header-border {
+  border-top:solid; 
+  border-top-color: coral; 
+}
+
+.header-nav{
+  align-items: center;
+  background-color: var(--background);
+  color: var(--color);
+  display: flex; 
+  font-family: monospace;
+  gap: 1rem;
+  margin-top: 100;
+  padding-left: 8em;
+}
+
+.spacer{
+  display:inline-flex;
+  
+}
+
+.show-more{
+  display:flex;
+  cursor: pointer;
+  padding-left: 2.25em;
+}
+
+p{
+  font-family: var(--font-family);
+  gap: 1rem;
+}
+
+.list-groupMine {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.vertical-center {
+  display:flex; 
+  align-items:center;
+}
+
+.App {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-size: large;
+  font-weight: bold;
+  transition: all .5s;
+}
+
+.buttonTheme {
+  background: var(--background);
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  padding: 10px;
+  position: fixed;
+  top: 20px;
+  right: 100px;
+}
+
+.showMoreButton{
+  border: none;
+  background-color: coral;
+  color:white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+:root{
+  --accent: coral; 
+  --background: white;
+  --color: black;
+  --font-family:monospace;
+  --text-primary: grey;
+  --text-secondary:grey; 
+  --text-decoration: none;
+}
+
+[data-theme='button-dark']{
+  --background:coral;
+}
+
+[data-theme='button-light']{
+  --background:#fff;
+}
+
+[data-theme='dark'] {
+  --background: black;
+  --color: #fff;
+  --font-family: monospace;
+  --text-primary: grey;
+  --text-secondary: grey;
+  --text-decoration: none;
+  --accent: darkred;
+}
+
+[data-theme='light'] {
+  --background: white;
+  --color: black;
+  --font-family: monospace;
+  --text-primary: grey;
+  --text-secondary:grey; 
+  --text-decoration: none;
+  --accent: coral; 
 }
