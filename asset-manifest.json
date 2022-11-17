@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hacker-news-makeover/static/css/main.ef795f03.css",
+    "main.js": "/hacker-news-makeover/static/js/main.ad5a5c9e.js",
+    "index.html": "/hacker-news-makeover/index.html",
+    "main.ef795f03.css.map": "/hacker-news-makeover/static/css/main.ef795f03.css.map",
+    "main.ad5a5c9e.js.map": "/hacker-news-makeover/static/js/main.ad5a5c9e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef795f03.css",
+    "static/js/main.ad5a5c9e.js"
+  ]
+}
