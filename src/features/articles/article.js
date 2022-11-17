@@ -4,12 +4,13 @@ import { addSaved, removeSaved, articlesSelector } from "./articlesSlice";
 import { useGetArticleQuery } from "../api/apiSLice";
 import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { BsStar, BsStarFill } from 'react-icons/bs'
-
+import moment from 'moment'
 
 export default function Article({ id, index }) {
     const { data } = useGetArticleQuery(id ?? skipToken);
-    const { url, title, score, kids, by } = data?.entities[id] ?? {};
+    const { url, title, score, kids, time, by } = data?.entities[id] ?? {};
     const domain = url ? new URL(url) : undefined;
+    const relativeTime = moment.unix(time).utc().fromNow();
     const dispatch = useDispatch();
     const selectEntities = useSelector(articlesSelector.selectEntities);
     const isSaved = selectEntities[id]?.saved === 'saved' ? 'saved' : 'save';
@@ -18,7 +19,7 @@ export default function Article({ id, index }) {
             return dispatch(removeSaved(id));
         }
         dispatch(addSaved(data?.entities[id]));
-    }
+    };
 
     return (
         <div className="spacer">
@@ -39,7 +40,7 @@ export default function Article({ id, index }) {
             </div>
             <div className="subtext">
                 <p>
-                    {`${score} points by ${by} `}
+                    {`${score} points by ${by} ${relativeTime} `}
                     |{` ${kids?.length ?? 0} comments `}
                     | {isSaved === 'saved' ?
                         <BsStarFill style={{ 'color': 'orange' }} onClick={onClickHandler} /> : <BsStar onClick={onClickHandler} />}
