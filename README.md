@@ -1,4 +1,4 @@
-## Hacker News Get's A Make Over!
+## Hacker News Gets A Make Over!
 
 ### Interact with Deployed app: 
 https://alejandrafranc0.github.io/hacker-news-makeover/
