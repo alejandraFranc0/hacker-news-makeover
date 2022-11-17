@@ -1,6 +1,4 @@
-# Getting Started with Hacker News Makeover
-
-Routing Notes: Url routes need to be entered as #/pathName. 
+Hacker News Get's A Make Over!
 
 ## Available Scripts
 
