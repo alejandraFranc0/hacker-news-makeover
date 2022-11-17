@@ -1,39 +1,52 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
-import { Link } from "react-router-dom";
-import { addSaved, removeSaved, articlesSelector} from "./articlesSlice";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addSaved, removeSaved, articlesSelector } from "./articlesSlice";
 import { useGetArticleQuery } from "../api/apiSLice";
 import { skipToken } from "@reduxjs/toolkit/dist/query";
+import { BsStar, BsStarFill } from 'react-icons/bs'
 
-export default function Article({savedArticles,id}){
+
+export default function Article({ id, index }) {
     const { data } = useGetArticleQuery(id ?? skipToken);
-    const setSave = savedArticles ? 'saved': 'save';
-    const [saved, setSaved] = useState(setSave);
     const { url, title, score, kids, by } = data?.entities[id] ?? {};
-    const domain =  url ? new URL(url) : undefined;
+    const domain = url ? new URL(url) : undefined;
     const dispatch = useDispatch();
-    const selectEntities = useSelector(articlesSelector.selectEntities); 
+    const selectEntities = useSelector(articlesSelector.selectEntities);
+    const isSaved = selectEntities[id]?.saved === 'saved' ? 'saved' : 'save';
     const onClickHandler = () => {
-        if(selectEntities[id]) {
-            setSaved('save')
+        if (selectEntities[id]) {
             return dispatch(removeSaved(id));
         }
-        setSaved('saved');
         dispatch(addSaved(data?.entities[id]));
     }
 
-    return(
-        <div>
-            <a href={url} target="_blank" rel="noopener noreferrer">{title}</a>
+    return (
+        <div className="spacer">
+            <div>
+                <span style={{ 'fontFamily': 'monospace' }}>{index + '. '}</span>
+                <span >
+                    <a href={url} style={{ 'fontFamily': 'monospace' }} target="_blank" rel="noopener noreferrer">{title}</a>
+                </span>
                 <span>
-                    <a href={url} target="_blank" rel="noopener noreferrer">{`(${domain?.host.replace('www.','') ?? ''})`}</a> 
-                    </span>
+                    <a
+                        className={"extra-inline-style"}
+                        href={url} style={{ 'color': 'grey', }}
+                        target="_blank" rel="noopener noreferrer"
+                    >
+                        {`(${domain?.host.replace('www.', '') ?? ''})`}
+                    </a>
+                </span>
+            </div>
+            <div className="subtext">
                 <p>
-                {`${score} points by ${by}`}
-                |  <Link style={{'color':'grey'}}>{`${kids?.length ?? 0} comments`}</Link>
-                |  <span type='text' onClick={onClickHandler}>{saved}</span>
+                    {`${score} points by ${by} `}
+                    |{` ${kids?.length ?? 0} comments `}
+                    | {isSaved === 'saved' ?
+                        <BsStarFill style={{ 'color': 'orange' }} onClick={onClickHandler} /> : <BsStar onClick={onClickHandler} />}
+                    <span>{' ' + isSaved}</span>
                 </p>
+
+            </div>
         </div>
-      
     )
 }

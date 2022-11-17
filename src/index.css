@@ -1,66 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 
 .fa-hacker-news {
   background-color: #fff;
   color: coral;
 }
 
-a:link { text-decoration: none; color:var(--color); font-family: var(--font-family) }
-
-a:visited { text-decoration: none;color:var(--color); font-family: var(--font-family)  }
-
-a:hover { text-decoration: none; }
-
-a:active { text-decoration: none; color:var(--color); font-family: var(--font-family)  }
-.header-border {
-  border-top:solid; 
-  border-top-color: coral; 
+.extra-inline-style {
+  margin-left: 10px;
+  font-size: small;
 }
 
-.header-nav{
+a:link {
+  text-decoration: none;
+  color: var(--color);
+  font-family: var(--font-family)
+}
+
+a:visited {
+  text-decoration: none;
+  color: var(--color);
+  font-family: var(--font-family)
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+  color: var(--color);
+  font-family: var(--font-family)
+}
+
+h1 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: var(--color);
+}
+
+h3 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: medium;
+  color: var(--color);
+}
+
+.header-nav {
   align-items: center;
   background-color: var(--background);
   color: var(--color);
-  display: flex; 
-  font-family: monospace;
+  display: inline-flex;
   gap: 1rem;
-  margin-top: 100;
-  padding-left: 8em;
+  margin-top: 40px;
+  transition: all .5s;
+
 }
 
-.spacer{
-  display:inline-flex;
-  
+.header-space {
+  display: inline-flex;
+  font-size: medium;
+  gap: .3rem;
 }
 
-.show-more{
-  display:flex;
+.spacer {
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.subtext {
+  display: inline-flex;
+  line-height: 25px;
+  font-size: small;
+}
+
+.show-more {
+  display: flex;
   cursor: pointer;
-  padding-left: 2.25em;
+  padding-left: 1em;
+  margin-bottom: 30px;
 }
 
-p{
-  font-family: var(--font-family);
-  gap: 1rem;
-}
-
-.list-groupMine {
+.list-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
-  padding-left: 0;
-}
+  margin-top: 40px;
+  margin-bottom: 10px;
 
-.vertical-center {
-  display:flex; 
-  align-items:center;
+  gap: .5rem;
 }
 
 .App {
+  border-top: solid;
+  border-top-color: coral;
   background-color: var(--background);
   color: var(--text-primary);
   font-size: large;
   font-weight: bold;
-  transition: all .5s;
+  min-height: 100vh;
+  padding-left: 8em;
+  padding-right: 8em;
+  transition:all .5s;
+}
+
+.footer {
+  border-top: solid;
+  border-top-color: coral;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+h6 {
+  margin-top: 20px;
 }
 
 .buttonTheme {
@@ -71,53 +128,47 @@ p{
   cursor: pointer;
   padding: 10px;
   position: fixed;
-  top: 20px;
-  right: 100px;
+  top: 49px;
+  right: 175px;
 }
 
-.showMoreButton{
+.showMoreButton {
   border: none;
   background-color: coral;
-  color:white;
+  color: white;
   cursor: pointer;
   font-size: 16px;
-  padding: 10px 20px;
+  padding: 5px 8px;
+  font-size: small;
 }
 
-:root{
-  --accent: coral; 
+html,
+body,
+:root {
   --background: white;
   --color: black;
-  --font-family:monospace;
+  --font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   --text-primary: grey;
-  --text-secondary:grey; 
-  --text-decoration: none;
+  margin: 0;
+  min-height: 100vh;
 }
 
-[data-theme='button-dark']{
-  --background:coral;
+[data-theme='button-dark'] {
+  --background: coral;
 }
 
-[data-theme='button-light']{
-  --background:#fff;
+[data-theme='button-light'] {
+  --background: #fff;
 }
 
 [data-theme='dark'] {
   --background: black;
   --color: #fff;
-  --font-family: monospace;
-  --text-primary: grey;
-  --text-secondary: grey;
-  --text-decoration: none;
-  --accent: darkred;
+  font-family: var(--font-family);
 }
 
 [data-theme='light'] {
   --background: white;
   --color: black;
-  --font-family: monospace;
-  --text-primary: grey;
-  --text-secondary:grey; 
-  --text-decoration: none;
-  --accent: coral; 
+  font-family: var(--font-family);
 }

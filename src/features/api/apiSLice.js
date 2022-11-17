@@ -19,7 +19,7 @@ export const apiSlice = createApi({
         getArticle: build.query({
             query: articleId => `/item/${articleId}.json`,
             transformResponse: (response) => {
-                return  articlesAdapter.upsertOne(articlesAdapter.getInitialState(), response);
+                return  articlesAdapter.upsertOne(articlesAdapter.getInitialState(), {...response, saved:'save'});
               },
         }),
     }),

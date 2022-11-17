@@ -6,36 +6,39 @@ export default function Header() {
     const activeStyle = {
         color: 'coral',
     };
+    const inactiveStyle = {
+        'fontSize': 'small',
+    }
 
     const matches = useMatches();
     return (
-        <div className='header-nav container-fluid'>
+        <div className='header-nav'>
             <div>
                 <NavLink to='/'>
                     <i className="fa-brands fa-3x fa-hacker-news" ></i>
                 </NavLink>
             </div>
             <div>
-                <span> Hacker News </span>
+                <h1> Hacker News </h1>
             </div>
-            <div className='spacer'>
-                <div>
-                <NavLink 
-                    style={({ isActive }) =>
-                    matches.length === 1 || isActive ? activeStyle : undefined
-                    }
-                    to='latest' end>Latest</NavLink>
-                </div>| 
-                <div>
-                <NavLink
-                    style={({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                    }
-                    to='starred'>Starred</NavLink>
+            <div className='header-space'>
+                <span>
+                    <NavLink
+                        style={({ isActive }) =>
+                            matches.length === 1 || isActive ? activeStyle : inactiveStyle
+                        }
+                        to='latest' end>latest</NavLink>
+                </span>  |
+                <span>
+                    <NavLink
+                        style={({ isActive }) =>
+                            isActive ? activeStyle : inactiveStyle
+                        }
+                        to='starred'>starred</NavLink>
 
-                </div>
-           </div>
-            <ToggleTheme/>
+                </span>
+            </div>
+            <ToggleTheme />
         </div>
     )
 }

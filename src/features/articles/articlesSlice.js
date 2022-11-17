@@ -1,17 +1,20 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-// import { apiSlice } from "../api/apiSLice";
 
 export const articlesAdapter = createEntityAdapter({
-    selectId: (article) => article?.id, 
+    selectId: (article) => {
+        return article?.id
+    },
 })
 
 export const articlesSlice = createSlice({
-    name: 'articles', 
-    initialState: articlesAdapter.getInitialState(), 
+    name: 'articles',
+    initialState: JSON.parse(localStorage.getItem('state'))?.articles ?? articlesAdapter.getInitialState(),
     reducers: {
-        addSaved: articlesAdapter.addOne, 
+        addSaved(state, { payload }) {
+            articlesAdapter.upsertOne(state, { ...payload, saved: 'saved' });
+        },
         removeSaved: articlesAdapter.removeOne,
-    }, 
+    },
     // extraReducers: (builder) => {
     //     builder.addMatcher(
     //         apiSlice.endpoints.getArticle.matchFulfilled,
