@@ -1,21 +1,22 @@
 import React from "react";
 import { NavLink, useMatches } from "react-router-dom";
-import ToggleTheme from "./features/theme/theme";
+import HackerSVG from '../images/Hacker.svg'
+import ToggleTheme from "../features/theme/theme";
 
 export default function Header() {
     const activeStyle = {
-        color: 'coral',
+        color: '#fb651e',
     };
     const inactiveStyle = {
-        'fontSize': 'small',
+        fontSize: 'small',
     }
 
     const matches = useMatches();
     return (
-        <div className='header-nav'>
+        <nav className='header-nav'>
             <div>
                 <NavLink to='/'>
-                    <i className="fa-brands fa-3x fa-hacker-news" ></i>
+                    <img src={HackerSVG} alt="Feather-Icon" className='hacker-news'/>
                 </NavLink>
             </div>
             <div>
@@ -27,18 +28,18 @@ export default function Header() {
                         style={({ isActive }) =>
                             matches.length === 1 || isActive ? activeStyle : inactiveStyle
                         }
-                        to='latest' end>latest</NavLink>
+                        to='latest' reloadDocument={true}>latest</NavLink>
                 </span>  |
                 <span>
                     <NavLink
                         style={({ isActive }) =>
                             isActive ? activeStyle : inactiveStyle
                         }
-                        to='starred'>starred</NavLink>
+                        to='starred' reloadDocument={true}>starred</NavLink>
 
                 </span>
             </div>
             <ToggleTheme />
-        </div>
+        </nav>
     )
 }

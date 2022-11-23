@@ -15,14 +15,6 @@ export const articlesSlice = createSlice({
         },
         removeSaved: articlesAdapter.removeOne,
     },
-    // extraReducers: (builder) => {
-    //     builder.addMatcher(
-    //         apiSlice.endpoints.getArticle.matchFulfilled,
-    //         (state, {payload}) => {
-    //             articlesAdapter.upsertOne(state, payload);
-    //         }
-    //     )
-    // }
 })
 
 export const { addSaved, removeSaved } = articlesSlice.actions;

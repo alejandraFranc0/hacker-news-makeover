@@ -1,9 +1,9 @@
 import React from 'react';
 import { useOutlet } from 'react-router-dom';
-import ArticleList from './features/articles/articleList';
+import ArticleList from '../features/articles/articleList';
 import { useSelector } from 'react-redux';
-import Header from './Header';
-import Footer from './Footer'
+import Header from '../common/Header';
+import Footer from '../common/Footer'
 function App() {
   const Outlet = useOutlet();
   const theme = useSelector(state => state.theme.getTheme);

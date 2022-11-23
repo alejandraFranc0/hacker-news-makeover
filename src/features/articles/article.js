@@ -6,7 +6,7 @@ import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { BsStar, BsStarFill } from 'react-icons/bs'
 import moment from 'moment'
 
-export default function Article({ id, index }) {
+export default function Article({ id }) {
     const { data } = useGetArticleQuery(id ?? skipToken);
     const { url, title, score, kids, time, by } = data?.entities[id] ?? {};
     const domain = url ? new URL(url) : undefined;
@@ -22,32 +22,20 @@ export default function Article({ id, index }) {
     };
 
     return (
-        <div className="spacer">
+        <li>
             <div>
-                <span style={{ 'fontFamily': 'monospace' }}>{index + '. '}</span>
-                <span >
-                    <a href={url} style={{ 'fontFamily': 'monospace' }} target="_blank" rel="noopener noreferrer">{title}</a>
-                </span>
-                <span>
-                    <a
-                        className={"extra-inline-style"}
-                        href={url} style={{ 'color': 'grey', }}
-                        target="_blank" rel="noopener noreferrer"
-                    >
-                        {`(${domain?.host.replace('www.', '') ?? ''})`}
-                    </a>
-                </span>
+                <a href={url} className='url' rel="noopener noreferrer">
+                    {title + ' '}
+                    <span>{` (${domain?.host.replace('www.', '') ?? ''})`}</span>
+                </a>
             </div>
             <div className="subtext">
                 <p>
-                    {`${score} points by ${by} ${relativeTime} `}
-                    |{` ${kids?.length ?? 0} comments `}
-                    | {isSaved === 'saved' ?
-                        <BsStarFill style={{ 'color': 'orange' }} onClick={onClickHandler} /> : <BsStar onClick={onClickHandler} />}
-                    <span>{' ' + isSaved}</span>
+                    {`${score} points by ${by} ${relativeTime} | ${kids?.length ?? 0} comments | `}
+                    {isSaved === 'saved' ? <BsStarFill style={{ 'color': 'orange', 'cursor': 'pointer' }} onClick={onClickHandler} /> : <BsStar style={{'cursor': 'pointer'}} onClick={onClickHandler} />}
+                    {' ' + isSaved}
                 </p>
-
             </div>
-        </div>
+        </li>
     )
 }

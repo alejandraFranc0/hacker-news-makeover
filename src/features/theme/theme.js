@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { darkTheme } from "./themeSlice";
-import { BsMoonStars } from 'react-icons/bs'
-import { BsSun } from 'react-icons/bs'
+import Sun from "../../images/sun.svg"
+import Moon from "../../images/moon.svg"
 
 
 export default function ToggleTheme() {
@@ -15,10 +15,10 @@ export default function ToggleTheme() {
     }
 
     return (
-        <div>
+        <div className='buttonTheme'>
             {!darkmode ?
-                <button className='buttonTheme' data-theme={'button-dark'} onClick={() => onClickHandler('dark')}><BsMoonStars /></button>
-                : <button className='buttonTheme' data-theme={'button-light'} onClick={() => onClickHandler('light')}><BsSun /></button>}
+                <button className='moon'  onClick={() => onClickHandler('dark')}><img src={Moon} alt="feather-icon"/></button>
+                : <button className='sun' onClick={() => onClickHandler('light')}><img src={Sun} alt="feather-icon"/></button>}
         </div>
     )
 }

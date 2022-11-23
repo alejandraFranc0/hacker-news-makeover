@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
-import { useGetIdsQuery } from '../api/apiSLice';
+import { useGetTopStoriesIdsQuery, useGetNewStoriesIdsQuery } from '../api/apiSLice';
 import { articlesSelector } from './articlesSlice';
-import { useMatches } from 'react-router-dom';
+import { useLocation, NavLink} from 'react-router-dom';
 import Article from './article';
 import { useSelector } from 'react-redux';
 
 export default function ArticleList() {
     const {
-        data: articleIds,
-    } = useGetIdsQuery();
+        data: topStoriesIds,
+    } = useGetTopStoriesIdsQuery();
+
+    const {
+        data: newStoriesIds
+    } = useGetNewStoriesIdsQuery();
+
+    const location = useLocation();
+    const articleIds  =  location.pathname === '/' ? topStoriesIds : newStoriesIds; 
+    const starredIds = useSelector(articlesSelector.selectIds);
 
     const [articleIndex, setIndex] = useState(0);
     const [starredIndex, setStarredIndex] = useState(0);
-    const location = useMatches();
-    const starredIds = useSelector(articlesSelector.selectIds);
-    const isStarred = location.find(({ pathname }) => pathname === '/starred')?.pathname === '/starred';
+
+   
+    const isStarred = location.pathname === '/starred';
     const displayArticles = isStarred ? starredIds?.slice(starredIndex, starredIndex + 12) : articleIds?.slice(articleIndex, articleIndex + 12);
     const displayIndex = isStarred ? starredIndex : articleIndex;
 
@@ -30,12 +38,14 @@ export default function ArticleList() {
 
     return (
         <div>
-            <ol className="list-group">
-                {displayArticles?.map((id, index) => <Article key={id} index={index + displayIndex + 1} id={id} />)}
+            <ol style={{"counterReset": `li ${displayIndex}`}}>
+                {displayArticles?.map((id) => <Article key={id} id={id} />)}
             </ol>
             <div className='show-more'>
-                {(isStarred && starredIds?.length > 12) && <button className='showMoreButton' onClick={onClickHandler}> show more </button>}
-                {(!isStarred && articleIds?.length > 12) && <button className='showMoreButton' onClick={onClickHandler}> show more </button>}
+                {
+                    ((isStarred && starredIds?.length > 12) || (!isStarred && articleIds?.length > 12)) 
+                    && <NavLink to='.' className='showMoreLink' onClick={onClickHandler}> show more </NavLink>
+                }
             </div>
         </div>
     )
